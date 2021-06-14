@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ConversionApplication</string>
+    <string-array name="basic_category_array">
+        <item>Currency</item>
+        <item>Weight</item>
+        <item>Temperature</item>
+        <item>Length</item>
+    </string-array>
+    <string-array name="temperature_options">
+        <item>Kelvin</item>
+        <item>Fahrenheit</item>
+        <item>Celsius</item>
+    </string-array>
+</resources>

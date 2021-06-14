@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Temperature">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:background="#55D5C3"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/category"
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp" />
+
+                <Spinner
+                    android:id="@+id/temperatureUnit1"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp" />
+
+                <EditText
+                    android:id="@+id/input1"
+                    android:layout_width="match_parent"
+                    android:layout_height="91dp"
+                    android:ems="10"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#e6e6e6"
+                android:orientation="vertical" >
+                <Spinner
+                    android:id="@+id/temperatureUnit2"
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp" />
+                <EditText
+                    android:id="@+id/input2"
+                    android:layout_width="match_parent"
+                    android:layout_height="91dp"
+                    android:ems="10"
+                    android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/swap"
+            android:layout_width="56dp"
+            android:layout_height="69dp"
+            android:layout_gravity="center"
+            android:src="@drawable/swap" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
