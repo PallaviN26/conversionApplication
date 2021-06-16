@@ -12,20 +12,27 @@ import android.widget.Spinner;
 
 public class Temperature extends Converter {
     ImageView swapImage;
-    Spinner spinner,dropdown1,dropdown2;
+    Spinner mainCategory, initialUnit,finalUnit;
     EditText input1,input2;
+    double value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
-        spinner = findViewById(R.id.category);
-        dropdown1 = findViewById(R.id.temperatureUnit1);
-        dropdown2= findViewById(R.id.temperatureUnit2);
-        listMainCategory(spinner);
-        listOptions(dropdown1,dropdown2);
+        mainCategory = findViewById(R.id.category);
+        initialUnit = findViewById(R.id.temperatureUnit1);
+        finalUnit= findViewById(R.id.temperatureUnit2);
+        input1 = findViewById(R.id.input1);
+        value = readInput(input1);
+        listMainCategory(mainCategory);
+        listOptions(initialUnit,finalUnit);
     }
 
 
+    @Override
+    public double convert(double input, String unitFrom, String unitTo) {
+        return 0;
+    }
 }
