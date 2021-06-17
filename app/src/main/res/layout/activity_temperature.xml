@@ -23,20 +23,67 @@
 
                 <Spinner
                     android:id="@+id/category"
-                    android:layout_width="match_parent"
-                    android:layout_height="73dp" />
+                    style="?android:attr/spinnerItemStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="73dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:popupBackground="#55d5c3"
+                    />
 
-                <Spinner
-                    android:id="@+id/temperatureUnit1"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="110dp" />
+                    android:layout_height="250dp"
 
-                <EditText
-                    android:id="@+id/input1"
-                    android:layout_width="match_parent"
-                    android:layout_height="91dp"
-                    android:ems="10"
-                    android:inputType="number" />
+                    >
+
+                    <EditText
+                        android:id="@+id/input1"
+                        android:layout_width="100dp"
+                        android:layout_height="75dp"
+
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="75dp"
+                        android:layout_marginEnd="200dp"
+                        android:layout_marginRight="200dp"
+                        android:layout_marginBottom="105dp"
+                        android:backgroundTint="@color/black"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="24sp"
+                        android:textStyle="italic" />
+
+                    <Spinner
+                        android:id="@+id/temperatureUnit1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="75dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="200dp"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="75dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="105dp"
+                        android:gravity="center_horizontal"
+                        android:popupBackground="#55d5c3" />
+
+                </RelativeLayout>
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -45,16 +92,58 @@
                 android:layout_weight="1"
                 android:background="#e6e6e6"
                 android:orientation="vertical" >
-                <Spinner
-                    android:id="@+id/temperatureUnit2"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="73dp" />
-                <EditText
-                    android:id="@+id/input2"
-                    android:layout_width="match_parent"
-                    android:layout_height="91dp"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:layout_height="350dp"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/input"
+                        android:layout_width="100dp"
+                        android:layout_height="75dp"
+
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginEnd="200dp"
+                        android:layout_marginRight="200dp"
+                        android:layout_marginBottom="125dp"
+                        android:backgroundTint="@color/black"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="24sp"
+                        android:textStyle="italic" />
+
+                    <Spinner
+                        android:id="@+id/temperatureUnit2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="75dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="200dp"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="150dp"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="125dp"
+                        android:gravity="center_horizontal"
+                        android:popupBackground="#e6e6e6" />
+
+                </RelativeLayout>
+
+
             </LinearLayout>
         </LinearLayout>
 
