@@ -2,8 +2,11 @@ package com.example.conversionapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -19,6 +22,13 @@ public class Temperature extends Converter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+
+        DatabaseHandler db=new DatabaseHandler(getApplicationContext(),"UnitDatabase",null,1);
+        db.deleteTable("temperature");
+        db.insertLabel("Kelvin",273,"temperature");
+        db.insertLabel("Celsius",0,"temperature");
+        db.insertLabel("Fahrenheit",300,"temperature");
+
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
@@ -28,7 +38,7 @@ public class Temperature extends Converter {
         input1 = findViewById(R.id.input1);
         value = readInput(input1);
         listMainCategory(mainCategory);
-        listOptions(initialUnit,finalUnit);
+        listOptions(initialUnit,finalUnit,"temperature");
     }
 
 

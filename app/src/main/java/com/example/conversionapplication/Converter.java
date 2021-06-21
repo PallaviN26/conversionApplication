@@ -1,5 +1,8 @@
 package com.example.conversionapplication;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 public abstract class Converter extends AppCompatActivity {
     public void listMainCategory(Spinner spinner) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.basic_category_array, android.R.layout.simple_spinner_dropdown_item);
@@ -19,13 +24,17 @@ public abstract class Converter extends AppCompatActivity {
 
     }
 
-    public void listOptions(Spinner dropdown1, Spinner dropdown2) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.temperature_options, android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dropdown1.setAdapter(adapter);
-//        TextView textView=(TextView)findViewById(R.id.textView);
-//        textView.setText(dropdown1.getSelectedItem().toString());
-        dropdown2.setAdapter(adapter);
+    public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
+        DatabaseHandler db=new DatabaseHandler(getApplicationContext(),"UnitDatabase",null,1);
+        List<String> label=db.getUnits(tableName);
+//        for(String s:label)
+//            Log.i("tableContents",s);
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,label);
+            //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.temperature_options, android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            dropdown1.setAdapter(adapter);
+            dropdown2.setAdapter(adapter);
     }
 
     public double readInput(EditText text) {
