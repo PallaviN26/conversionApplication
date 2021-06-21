@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.conversionapplication.db.CategoryHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

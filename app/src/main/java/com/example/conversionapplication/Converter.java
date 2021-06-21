@@ -1,5 +1,6 @@
 package com.example.conversionapplication;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -11,11 +12,20 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.conversionapplication.db.CategoryHelper;
+import com.example.conversionapplication.db.contract.CategoryAdapter;
+
 public abstract class Converter extends AppCompatActivity {
+
     public void listMainCategory(Spinner spinner) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.basic_category_array, android.R.layout.simple_spinner_dropdown_item);
+        CategoryHelper helper = new CategoryHelper(this);
+        helper.insert();
+        //CategoryAdapter adapter = new CategoryAdapter(this,helper.getData());
+        String[] values = {"TEMP", "TOMP"};
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_temperature, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
 
     }
 
@@ -31,6 +41,7 @@ public abstract class Converter extends AppCompatActivity {
     public double readInput(EditText text) {
         final double[] inputValue = new double[1];
         text.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
