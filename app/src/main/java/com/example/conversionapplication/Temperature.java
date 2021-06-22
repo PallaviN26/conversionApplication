@@ -44,6 +44,22 @@ public class Temperature extends Converter {
 
     @Override
     public double convert(double input, String unitFrom, String unitTo) {
+
         return 0;
     }
+
+    public  double convertCelsiusToKelvin(double celsius){
+        return  celsius+273.15;
+    }
+
+    public double convertKelvinToCelsius(double kelvin){
+        return kelvin-273.15;
+    }
+
+    public double convertCelsiusToFahrenheit(double celsius){
+        double Fahrenheit = (celsius*1.8) + 32;
+        return  Fahrenheit;
+    }
+
+
 }
