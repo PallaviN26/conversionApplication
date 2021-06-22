@@ -53,6 +53,14 @@ public class Temperature extends Converter {
         double Fahrenheit = (celsius*1.8) + 32;
         return  Fahrenheit;
     }
-
+    public double convertKelvinToFahrenheit(double kelvin){
+        return (kelvin-273.15)*9/5+32;
+    }
+    public double convertFahrenheitToKelvin(double fahrenheit){
+        return (fahrenheit-32)*5/9+273.15;
+    }
+    public double convertFahrenheitToCelsius(double fahrenheit){
+        return (273-32)*5/9;
+    }
 
 }
