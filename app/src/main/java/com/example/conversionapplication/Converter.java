@@ -6,21 +6,23 @@ import android.database.sqlite.SQLiteStatement;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.conversionapplication.db.CategoryHelper;
 import java.util.List;
 
 public abstract class Converter extends AppCompatActivity {
+
     public void listMainCategory(Spinner spinner) {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.basic_category_array, android.R.layout.simple_spinner_dropdown_item);
+        CategoryHelper helper = new CategoryHelper(this);
+        helper.insert();
+        List<String> values = helper.getData();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
 
     }
 
@@ -40,6 +42,7 @@ public abstract class Converter extends AppCompatActivity {
     public double readInput(EditText text) {
         final double[] inputValue = new double[1];
         text.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
