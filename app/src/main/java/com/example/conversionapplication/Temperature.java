@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.conversionapplication.db.CategoryContract;
 import com.example.conversionapplication.db.TemperatureHelper;
 
 public class Temperature extends Converter {
@@ -29,7 +30,7 @@ public class Temperature extends Converter {
         initialUnit = findViewById(R.id.temperatureUnit1);
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
-        value = readInput(input1);
+        value = Converter.inputValue;
         listMainCategory(mainCategory);
         listOptions(initialUnit,finalUnit,"temperature");
     }
@@ -37,7 +38,6 @@ public class Temperature extends Converter {
 
     @Override
     public double convert(double input, String unitFrom, String unitTo) {
-
         return 0;
     }
 

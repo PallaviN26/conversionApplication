@@ -20,7 +20,7 @@ public abstract class Converter extends AppCompatActivity {
     public static String sourceUnit;
     public static String targetUnit;
     public static String value;
-
+    public static double  inputValue;
     public void listMainCategory(Spinner spinner) {
         CategoryHelper helper = new CategoryHelper(this);
         helper.insert();
@@ -44,8 +44,7 @@ public abstract class Converter extends AppCompatActivity {
         targetUnit = new String(value);
     }
     // On entering a digit the entered input to be read return the number
-    public double readInput(EditText text) {
-        final double[] inputValue = new double[1];
+    public void  readInput(EditText text) {
         text.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -56,7 +55,8 @@ public abstract class Converter extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Log.i("Value", s.toString());
-                inputValue[0] = Double.parseDouble(s.toString());
+                inputValue = Double.parseDouble(s.toString());
+                convert(inputValue,sourceUnit,targetUnit);
             }
 
             @Override
@@ -65,9 +65,6 @@ public abstract class Converter extends AppCompatActivity {
 
             }
         });
-        return inputValue[0];
     }
-
-
     public abstract double convert(double input, String unitFrom, String unitTo);
 }
