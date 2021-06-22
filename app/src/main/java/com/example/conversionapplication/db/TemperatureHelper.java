@@ -1,4 +1,4 @@
-package com.example.conversionapplication;
+package com.example.conversionapplication.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,10 +12,10 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public class TemperatureHelper extends SQLiteOpenHelper {
 
 
-    public DatabaseHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public TemperatureHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 

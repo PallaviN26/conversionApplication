@@ -1,17 +1,11 @@
 package com.example.conversionapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Matrix;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+
+import com.example.conversionapplication.db.TemperatureHelper;
 
 public class Temperature extends Converter {
     ImageView swapImage;
@@ -23,12 +17,11 @@ public class Temperature extends Converter {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
 
-        DatabaseHandler db=new DatabaseHandler(getApplicationContext(),"UnitDatabase",null,1);
+        TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
         db.deleteTable("temperature");
         db.insertLabel("Kelvin",273,"temperature");
         db.insertLabel("Celsius",0,"temperature");
         db.insertLabel("Fahrenheit",300,"temperature");
-
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);

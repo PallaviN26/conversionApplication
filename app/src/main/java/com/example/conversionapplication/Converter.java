@@ -1,19 +1,23 @@
 package com.example.conversionapplication;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conversionapplication.db.CategoryHelper;
+import com.example.conversionapplication.db.TemperatureHelper;
+import com.example.conversionapplication.spinner.ConversionOptionsSpinnerActivity;
+
 import java.util.List;
 
 public abstract class Converter extends AppCompatActivity {
+    public static String sourceUnit;
+    public static String targetUnit;
+    public static String value;
 
     public void listMainCategory(Spinner spinner) {
         CategoryHelper helper = new CategoryHelper(this);
@@ -22,23 +26,21 @@ public abstract class Converter extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-
     }
 
     public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
-        DatabaseHandler db=new DatabaseHandler(getApplicationContext(),"UnitDatabase",null,1);
+        TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
         List<String> label=db.getUnits(tableName);
-//        for(String s:label)
-//            Log.i("tableContents",s);
-
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,label);
-            //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.temperature_options, android.R.layout.simple_spinner_dropdown_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            dropdown1.setAdapter(adapter);
-            dropdown2.setAdapter(adapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown1.setAdapter(adapter);
+        dropdown2.setAdapter(adapter);
+        dropdown1.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
+        sourceUnit = new String(value);
+        dropdown2.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
+        targetUnit = new String(value);
     }
-
+    // On entering a digit the entered input to be read return the number
     public double readInput(EditText text) {
         final double[] inputValue = new double[1];
         text.addTextChangedListener(new TextWatcher() {
@@ -60,7 +62,6 @@ public abstract class Converter extends AppCompatActivity {
 
             }
         });
-        // On entering a digit the entered input to be read return the number
         return inputValue[0];
     }
 
