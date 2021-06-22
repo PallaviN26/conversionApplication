@@ -3,14 +3,13 @@ package com.example.conversionapplication.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.ArrayAdapter;
+import android.util.Log;
+import android.widget.ListView;
 
-
-import com.example.conversionapplication.Temperature;
-import com.example.conversionapplication.db.contract.CategoryContract;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryHelper extends SQLiteOpenHelper {
@@ -18,7 +17,7 @@ public class CategoryHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + CategoryContract.CategoryEntry.TABLE_NAME + " (" +
                    CategoryContract.CategoryEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY," +
                     CategoryContract.CategoryEntry.COLUMN_NAME_NAMES + " TEXT)";
-    private static final String  SQL_GET_ENTRY = "Select"+ CategoryContract.CategoryEntry.COLUMN_NAME_NAMES +"from" + CategoryContract.CategoryEntry.TABLE_NAME;
+
     private static final String SQL_FIND_ROWS = "Select COUNT(*)  From " + CategoryContract.CategoryEntry.TABLE_NAME ;
 
     public static final int DATABASE_VERSION = 1;
@@ -30,34 +29,56 @@ public class CategoryHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS category");
+        onCreate(db);
 
     }
     public void insert(){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         Cursor res = db.rawQuery(SQL_FIND_ROWS,null);
-        int num = res.getCount();
-        if(num == 0 ) {
+        if(res.getCount() == 0 ) {
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 1);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Currency");
+            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 2);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Time");
+            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 2);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Length");
+            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 4);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Weight");
+            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 5);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Temperature");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
         }
+
     }
-    public Cursor getData(){
+    public List<String> getData(){
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery(SQL_GET_ENTRY,null);
+        List<String> list=new ArrayList<String>();
+        String  SQL_GET_ENTRY = "select "+ CategoryContract.CategoryEntry.COLUMN_NAME_NAMES +" from  " + CategoryContract.CategoryEntry.TABLE_NAME;
+        Cursor c =  db.rawQuery(SQL_GET_ENTRY,null);
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            list.add(c.getString(c.getColumnIndex("name")));
+            Log.i("column index of names " ,c.getString(c.getColumnIndex("name")));
+            c.moveToNext();
+        }
+        db.close();
+        return list;
+
+    }
+    public void deleteData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("Delete from " + CategoryContract.CategoryEntry.TABLE_NAME);
     }
 
 }

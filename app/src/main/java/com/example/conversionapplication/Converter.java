@@ -1,28 +1,25 @@
 package com.example.conversionapplication;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.conversionapplication.db.CategoryHelper;
-import com.example.conversionapplication.db.contract.CategoryAdapter;
+
+import java.util.List;
 
 public abstract class Converter extends AppCompatActivity {
 
     public void listMainCategory(Spinner spinner) {
         CategoryHelper helper = new CategoryHelper(this);
         helper.insert();
-        //CategoryAdapter adapter = new CategoryAdapter(this,helper.getData());
-        String[] values = {"TEMP", "TOMP"};
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_temperature, values);
+        List<String> values = helper.getData();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 

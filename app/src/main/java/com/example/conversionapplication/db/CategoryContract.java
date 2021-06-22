@@ -1,4 +1,4 @@
-package com.example.conversionapplication.db.contract;
+package com.example.conversionapplication.db;
 
 import android.provider.BaseColumns;
 
