@@ -10,11 +10,13 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conversionapplication.db.CategoryHelper;
 import com.example.conversionapplication.db.TemperatureHelper;
+import com.example.conversionapplication.spinner.CategorySpinnerActivity;
 import com.example.conversionapplication.spinner.ConversionOptionsSpinnerActivity;
 
 import java.util.List;
 
 public abstract class Converter extends AppCompatActivity {
+    public static String Category;
     public static String sourceUnit;
     public static String targetUnit;
     public static String value;
@@ -26,6 +28,7 @@ public abstract class Converter extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new CategorySpinnerActivity());
     }
 
     public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
