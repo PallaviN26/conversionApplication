@@ -3,7 +3,6 @@ package com.example.conversionapplication;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -11,15 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.conversionapplication.db.CategoryHelper;
 import com.example.conversionapplication.db.TemperatureHelper;
 import com.example.conversionapplication.spinner.CategorySpinnerActivity;
-import com.example.conversionapplication.spinner.ConversionOptionsSpinnerActivity;
+import com.example.conversionapplication.spinner.SourceUnitListener;
+import com.example.conversionapplication.spinner.TargetUnitListener;
 
 import java.util.List;
 
 public abstract class Converter extends AppCompatActivity {
     public static String Category;
-    public static String sourceUnit;
-    public static String targetUnit;
-    public static String value;
+    public static String sourceUnit = "Kelvin";
+    public static String targetUnit = "Kelvin";
     public static double  inputValue;
     public void listMainCategory(Spinner spinner) {
         CategoryHelper helper = new CategoryHelper(this);
@@ -39,10 +38,11 @@ public abstract class Converter extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown1.setAdapter(adapter);
         dropdown2.setAdapter(adapter);
-       dropdown1.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
-        sourceUnit = value;
-        dropdown2.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
-        targetUnit = value;
+        dropdown1.setOnItemSelectedListener(new SourceUnitListener());
+        Log.i("source Unit ",sourceUnit);
+        dropdown2.setOnItemSelectedListener(new TargetUnitListener());
+        Log.i("target Unit ",targetUnit);
+
     }
 
     // On entering a digit the entered input to be read return the number
