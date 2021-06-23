@@ -43,51 +43,52 @@ public class Temperature extends Converter {
 
     @Override
     public void convert(double input, String unitFrom, String unitTo) {
-        Log.i("curr","convert for switch");
-//        double currInput=Converter.inputValue;
-//        Log.i("curr",String.valueOf(currInput));
-//        double resultValue=0.0;
-//        switch (Converter.sourceUnit){
-//            case "Kelvin":
-//                switch (Converter.targetUnit){
-//                case "Celsius":
-//                    resultValue=convertKelvinToCelsius(currInput);
-//                    break;
-//                case "Fahrenheit":
-//                    resultValue=convertKelvinToFahrenheit(currInput);
-//                    break;
-//                default:
-//                    resultValue=currInput;
-//            }
-//                break;
-//            case "Fahrenheit":
-//            switch(Converter.targetUnit){
-//                case "Kelvin":
-//                    resultValue=convertFahrenheitToKelvin(currInput);
-//                    break;
-//                case "Celsius":
-//                    resultValue=convertFahrenheitToCelsius(currInput);
-//                    break;
-//                default:
-//                    resultValue=currInput;
-//            }
-//            break;
-//            case "Celsius":
-//            switch (Converter.targetUnit){
-//                case "Fahrenheit":
-//                    resultValue=convertCelsiusToFahrenheit(currInput);
-//                    break;
-//                case "Kelvin":
-//                    resultValue=convertCelsiusToKelvin(currInput);
-//                    break;
-//                default:
-//                    resultValue=currInput;
-//            }
-//            default:
-//                Log.i("Invalid","invalid input by source");
-//        }
-        Log.i("resValue",String.valueOf(1));
-        output.setText(String.valueOf(1));
+        Log.i("currentfunction","convert for switch");
+        double currInput=Converter.inputValue;
+        Log.i("currentinput",String.valueOf(currInput));
+        double resultValue=0.0;
+        Log.i("sourcetargetunit",Converter.sourceUnit+" "+Converter.targetUnit);
+        switch (Converter.sourceUnit){
+            case "Kelvin":
+                switch (Converter.targetUnit){
+                case "Celsius":
+                    resultValue=convertKelvinToCelsius(currInput);
+                    break;
+                case "Fahrenheit":
+                    resultValue=convertKelvinToFahrenheit(currInput);
+                    break;
+                default:
+                    resultValue=currInput;
+            }
+                break;
+            case "Fahrenheit":
+            switch(Converter.targetUnit){
+                case "Kelvin":
+                    resultValue=convertFahrenheitToKelvin(currInput);
+                    break;
+                case "Celsius":
+                    resultValue=convertFahrenheitToCelsius(currInput);
+                    break;
+                default:
+                    resultValue=currInput;
+            }
+            break;
+            case "Celsius":
+            switch (Converter.targetUnit){
+                case "Fahrenheit":
+                    resultValue=convertCelsiusToFahrenheit(currInput);
+                    break;
+                case "Kelvin":
+                    resultValue=convertCelsiusToKelvin(currInput);
+                    break;
+                default:
+                    resultValue=currInput;
+            }
+            default:
+                Log.i("Invalid","invalid input by source");
+        }
+        Log.i("resValue",String.valueOf(resultValue));
+        output.setText(String.format("%.2f",resultValue));
     }
 
     public  double convertCelsiusToKelvin(double celsius){
