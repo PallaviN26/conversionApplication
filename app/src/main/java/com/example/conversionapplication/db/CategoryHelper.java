@@ -43,6 +43,9 @@ public class CategoryHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         Cursor res = db.rawQuery(SQL_FIND_ROWS,null);
         if(res.getCount() == 0 ) {
+            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 5);
+            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Temperature");
+            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 1);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Currency");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
@@ -55,9 +58,7 @@ public class CategoryHelper extends SQLiteOpenHelper {
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 4);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Weight");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
-            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 5);
-            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Temperature");
-            db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
+
         }
 
     }

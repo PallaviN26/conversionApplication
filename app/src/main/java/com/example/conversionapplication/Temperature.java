@@ -1,9 +1,11 @@
 package com.example.conversionapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.conversionapplication.db.CategoryContract;
 import com.example.conversionapplication.db.TemperatureHelper;
@@ -12,6 +14,7 @@ public class Temperature extends Converter {
     ImageView swapImage;
     Spinner mainCategory, initialUnit,finalUnit;
     EditText input1,input2;
+    TextView output;
     double value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class Temperature extends Converter {
         initialUnit = findViewById(R.id.temperatureUnit1);
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
+        output=findViewById(R.id.output);
         value = Converter.inputValue;
         listMainCategory(mainCategory);
         listOptions(initialUnit,finalUnit,"temperature");
@@ -37,8 +41,52 @@ public class Temperature extends Converter {
 
 
     @Override
-    public double convert(double input, String unitFrom, String unitTo) {
-        return 0;
+    public void convert(double input, String unitFrom, String unitTo) {
+        Log.i("curr","convert for switch");
+//        double currInput=Converter.inputValue;
+//        Log.i("curr",String.valueOf(currInput));
+//        double resultValue=0.0;
+//        switch (Converter.sourceUnit){
+//            case "Kelvin":
+//                switch (Converter.targetUnit){
+//                case "Celsius":
+//                    resultValue=convertKelvinToCelsius(currInput);
+//                    break;
+//                case "Fahrenheit":
+//                    resultValue=convertKelvinToFahrenheit(currInput);
+//                    break;
+//                default:
+//                    resultValue=currInput;
+//            }
+//                break;
+//            case "Fahrenheit":
+//            switch(Converter.targetUnit){
+//                case "Kelvin":
+//                    resultValue=convertFahrenheitToKelvin(currInput);
+//                    break;
+//                case "Celsius":
+//                    resultValue=convertFahrenheitToCelsius(currInput);
+//                    break;
+//                default:
+//                    resultValue=currInput;
+//            }
+//            break;
+//            case "Celsius":
+//            switch (Converter.targetUnit){
+//                case "Fahrenheit":
+//                    resultValue=convertCelsiusToFahrenheit(currInput);
+//                    break;
+//                case "Kelvin":
+//                    resultValue=convertCelsiusToKelvin(currInput);
+//                    break;
+//                default:
+//                    resultValue=currInput;
+//            }
+//            default:
+//                Log.i("Invalid","invalid input by source");
+//        }
+        Log.i("resValue",String.valueOf(1));
+        output.setText(String.valueOf(1));
     }
 
     public  double convertCelsiusToKelvin(double celsius){

@@ -34,15 +34,17 @@ public abstract class Converter extends AppCompatActivity {
     public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
         TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
         List<String> label=db.getUnits(tableName);
+        Log.i("labelLength:",String.valueOf(label.size()));
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,label);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown1.setAdapter(adapter);
         dropdown2.setAdapter(adapter);
-        dropdown1.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
-        sourceUnit = new String(value);
+       dropdown1.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
+        sourceUnit = value;
         dropdown2.setOnItemSelectedListener(new ConversionOptionsSpinnerActivity());
-        targetUnit = new String(value);
+        targetUnit = value;
     }
+
     // On entering a digit the entered input to be read return the number
     public void  readInput(EditText text) {
         text.addTextChangedListener(new TextWatcher() {
@@ -54,8 +56,9 @@ public abstract class Converter extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.i("Value", s.toString());
+                Log.i("Value", "1");
                 inputValue = Double.parseDouble(s.toString());
+                Log.i("inputValue", String.valueOf(inputValue));
                 convert(inputValue,sourceUnit,targetUnit);
             }
 
@@ -66,5 +69,5 @@ public abstract class Converter extends AppCompatActivity {
             }
         });
     }
-    public abstract double convert(double input, String unitFrom, String unitTo);
+    public abstract void convert(double input, String unitFrom, String unitTo);
 }

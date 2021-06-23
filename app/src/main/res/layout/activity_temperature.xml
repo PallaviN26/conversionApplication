@@ -98,8 +98,8 @@
 
                     >
 
-                    <EditText
-                        android:id="@+id/input"
+                    <TextView
+                        android:id="@+id/output"
                         android:layout_width="100dp"
                         android:layout_height="75dp"
 
@@ -115,9 +115,6 @@
                         android:layout_marginEnd="200dp"
                         android:layout_marginRight="200dp"
                         android:layout_marginBottom="125dp"
-                        android:backgroundTint="@color/black"
-                        android:ems="10"
-                        android:inputType="number"
                         android:textSize="24sp"
                         android:textStyle="italic" />
 
