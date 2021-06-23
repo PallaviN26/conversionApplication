@@ -56,7 +56,7 @@ public abstract class Converter extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.i("Value", "1");
+                Log.i("Value",s.toString());
                 inputValue = Double.parseDouble(s.toString());
                 Log.i("inputValue", String.valueOf(inputValue));
                 convert(inputValue,sourceUnit,targetUnit);

@@ -34,6 +34,7 @@ public class Temperature extends Converter {
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
+        readInput(input1);
         value = Converter.inputValue;
         listMainCategory(mainCategory);
         listOptions(initialUnit,finalUnit,"temperature");
