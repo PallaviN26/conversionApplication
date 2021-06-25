@@ -23,6 +23,7 @@ public abstract class Converter extends AppCompatActivity {
     public static String sourceUnit = "Kelvin";
     public static String targetUnit = "Kelvin";
     public static double  inputValue;
+    public Context context;
     public static Converter converter;
 
     public static Converter getConverter() {
