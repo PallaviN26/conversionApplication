@@ -13,6 +13,7 @@ public class TargetUnitListener implements AdapterView.OnItemSelectedListener{
 
         Converter.targetUnit = parent.getItemAtPosition(position).toString();
         Log.i("target Unit ", Converter.targetUnit);
+        Converter.getConverter().convert(Converter.inputValue,Converter.sourceUnit,Converter.targetUnit);
     }
 
     @Override

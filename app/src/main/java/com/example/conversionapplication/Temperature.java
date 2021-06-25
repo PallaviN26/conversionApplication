@@ -20,6 +20,8 @@ public class Temperature extends Converter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        context= this;
+        converter = this;
 
         TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
         db.deleteTable("temperature");
@@ -35,6 +37,7 @@ public class Temperature extends Converter {
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
         readInput(input1);
+
         value = Converter.inputValue;
         listMainCategory(mainCategory);
         listOptions(initialUnit,finalUnit,"temperature");

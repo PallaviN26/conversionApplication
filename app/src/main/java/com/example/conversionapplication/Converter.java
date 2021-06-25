@@ -1,5 +1,6 @@
 package com.example.conversionapplication;
 
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +23,11 @@ public abstract class Converter extends AppCompatActivity {
     public static String sourceUnit = "Kelvin";
     public static String targetUnit = "Kelvin";
     public static double  inputValue;
+    public static Converter converter;
+
+    public static Converter getConverter() {
+        return converter;
+    }
     public void listMainCategory(Spinner spinner) {
         CategoryHelper helper = new CategoryHelper(this);
         helper.insert();
