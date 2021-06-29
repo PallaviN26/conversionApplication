@@ -39,27 +39,30 @@ public class CategoryHelper extends SQLiteOpenHelper {
 
     }
     public void insert(){
+
+
+      //  deleteData();
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         Cursor res = db.rawQuery(SQL_FIND_ROWS,null);
         if(res.getCount() == 0 ) {
-            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 5);
+            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 3);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Temperature");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 1);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Currency");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
-            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 2);
+            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 4);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Time");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 2);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Length");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
-            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 4);
+            values.put(CategoryContract.CategoryEntry.COLUMN_NAME_ID, 5);
             values.put(CategoryContract.CategoryEntry.COLUMN_NAME_NAMES, "Weight");
             db.insert(CategoryContract.CategoryEntry.TABLE_NAME, null, values);
 
-        }
+     }
 
     }
     public List<String> getData(){

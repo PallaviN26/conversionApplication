@@ -7,8 +7,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.conversionapplication.db.CategoryContract;
-import com.example.conversionapplication.db.TemperatureHelper;
+import com.example.conversionapplication.db.DatabaseHelper;
 
 public class Temperature extends Converter {
     ImageView swapImage;
@@ -23,7 +22,7 @@ public class Temperature extends Converter {
         context= this;
         converter = this;
 
-        TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
+        DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         db.deleteTable("temperature");
         db.insertLabel("Kelvin",273,"temperature");
         db.insertLabel("Celsius",0,"temperature");

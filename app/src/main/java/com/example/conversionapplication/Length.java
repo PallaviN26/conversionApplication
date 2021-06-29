@@ -7,8 +7,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.conversionapplication.db.TemperatureHelper;
-
 public class Length extends Converter{
     ImageView swapImage;
     Spinner mainCategory, initialUnit,finalUnit;
@@ -20,6 +18,7 @@ public class Length extends Converter{
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         context = this;
+        converter = this;
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);

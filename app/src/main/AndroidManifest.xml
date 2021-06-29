@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Length"></activity>
+        <activity android:name=".Time"></activity>
+        <activity android:name=".Currency"></activity>
+        <activity android:name=".Weight"></activity>
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.conversionapplication.db.CategoryHelper;
-import com.example.conversionapplication.db.TemperatureHelper;
+import com.example.conversionapplication.db.DatabaseHelper;
 import com.example.conversionapplication.spinner.CategorySpinnerActivity;
 import com.example.conversionapplication.spinner.SourceUnitListener;
 import com.example.conversionapplication.spinner.TargetUnitListener;
@@ -23,8 +23,9 @@ public abstract class Converter extends AppCompatActivity {
     public static String sourceUnit = "Kelvin";
     public static String targetUnit = "Kelvin";
     public static double  inputValue;
-    public Context context;
+    public static Context context;
     public static Converter converter;
+    public static Integer position;
 
     public static Converter getConverter() {
         return converter;
@@ -40,7 +41,7 @@ public abstract class Converter extends AppCompatActivity {
     }
 
     public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
-        TemperatureHelper db=new TemperatureHelper(getApplicationContext(),"UnitDatabase",null,1);
+        DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         List<String> label=db.getUnits(tableName);
         Log.i("labelLength:",String.valueOf(label.size()));
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,label);
