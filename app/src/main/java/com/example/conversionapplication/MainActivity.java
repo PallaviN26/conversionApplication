@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public void categoryFile(View view){
         Button button = findViewById(R.id.button);
         Intent intent = new Intent(MainActivity.this,Temperature.class);
+        Converter.position =  0;
         startActivity(intent);
     }
 }

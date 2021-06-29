@@ -23,7 +23,7 @@ public abstract class Converter extends AppCompatActivity {
     public static String sourceUnit = "Kelvin";
     public static String targetUnit = "Kelvin";
     public static double  inputValue;
-    public static Context context;
+    //public static Context context;
     public static Converter converter;
     public static Integer position;
 
@@ -31,12 +31,13 @@ public abstract class Converter extends AppCompatActivity {
         return converter;
     }
     public void listMainCategory(Spinner spinner) {
-        CategoryHelper helper = new CategoryHelper(this);
+        CategoryHelper helper = new CategoryHelper(converter.getApplicationContext());
         helper.insert();
         List<String> values = helper.getData();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelection(position);
         spinner.setOnItemSelectedListener(new CategorySpinnerActivity());
     }
 

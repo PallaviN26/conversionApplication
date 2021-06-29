@@ -8,6 +8,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.conversionapplication.db.DatabaseHelper;
+import com.example.conversionapplication.spinner.CategorySpinnerActivity;
 
 public class Temperature extends Converter {
     ImageView swapImage;
@@ -19,7 +20,7 @@ public class Temperature extends Converter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        context= this;
+        //context= this;
         converter = this;
 
         DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
@@ -40,6 +41,7 @@ public class Temperature extends Converter {
         value = Converter.inputValue;
         listMainCategory(mainCategory);
         listOptions(initialUnit,finalUnit,"temperature");
+        mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
     }
 
 

@@ -7,6 +7,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.conversionapplication.db.DatabaseHelper;
+
 public class Length extends Converter{
     ImageView swapImage;
     Spinner mainCategory, initialUnit,finalUnit;
@@ -17,8 +19,7 @@ public class Length extends Converter{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        context = this;
-        converter = this;
+        //context = this;
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
@@ -28,10 +29,11 @@ public class Length extends Converter{
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
         Toast.makeText(this,"HI ",Toast.LENGTH_SHORT).show();
-       // readInput(input1);
-       // value = Converter.inputValue;
-       // listMainCategory(mainCategory);
-       // listOptions(initialUnit,finalUnit,"temperature");
+        // readInput(input1);
+        // value = Converter.inputValue;
+         listMainCategory(mainCategory);
+        // listOptions(initialUnit,finalUnit,"temperature");
+        converter= this;
     }
 
     @Override

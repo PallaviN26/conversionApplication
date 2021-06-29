@@ -17,8 +17,7 @@ public class Currency extends Converter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        context = this;
-        converter = this;
+        //context = this;
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
@@ -30,8 +29,9 @@ public class Currency extends Converter {
         Toast.makeText(this,"HI ",Toast.LENGTH_SHORT).show();
         // readInput(input1);
         // value = Converter.inputValue;
-        // listMainCategory(mainCategory);
+        listMainCategory(mainCategory);
         // listOptions(initialUnit,finalUnit,"temperature");
+        converter= this;
     }
     @Override
     public void convert(double input, String unitFrom, String unitTo) {
