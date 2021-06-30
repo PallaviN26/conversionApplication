@@ -23,11 +23,7 @@ public class Temperature extends Converter {
         //context= this;
         converter = this;
 
-        DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
-        db.deleteTable("temperature");
-        db.insertLabel("Kelvin",273,"temperature");
-        db.insertLabel("Celsius",0,"temperature");
-        db.insertLabel("Fahrenheit",300,"temperature");
+
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
@@ -37,9 +33,13 @@ public class Temperature extends Converter {
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
         readInput(input1);
-
         value = Converter.inputValue;
         listMainCategory(mainCategory);
+        DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
+        db.deleteTable("temperature");
+        db.insertLabel("Kelvin", (double) 273,"temperature");
+        db.insertLabel("Celsius", (double) 0,"temperature");
+        db.insertLabel("Fahrenheit", (double) 300,"temperature");
         listOptions(initialUnit,finalUnit,"temperature");
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
     }
@@ -47,11 +47,11 @@ public class Temperature extends Converter {
 
     @Override
     public void convert(double input, String unitFrom, String unitTo) {
-        Log.i("currentfunction","convert for switch");
+//        Log.i("currentfunction","convert for switch");
         double currInput=Converter.inputValue;
-        Log.i("currentinput",String.valueOf(currInput));
+//        Log.i("currentinput",String.valueOf(currInput));
         double resultValue=0.0;
-        Log.i("sourcetargetunit",Converter.sourceUnit+" "+Converter.targetUnit);
+//        Log.i("sourcetargetunit",Converter.sourceUnit+" "+Converter.targetUnit);
         switch (Converter.sourceUnit){
             case "Kelvin":
                 switch (Converter.targetUnit){
@@ -89,9 +89,9 @@ public class Temperature extends Converter {
                     resultValue=currInput;
             }
             default:
-                Log.i("Invalid","invalid input by source");
+//                Log.i("Invalid","invalid input by source");
         }
-        Log.i("resValue",String.valueOf(resultValue));
+//        Log.i("resValue",String.valueOf(resultValue));
         output.setText(String.format("%.2f",resultValue));
     }
 

@@ -34,6 +34,7 @@ public abstract class Converter extends AppCompatActivity {
         CategoryHelper helper = new CategoryHelper(converter.getApplicationContext());
         helper.insert();
         List<String> values = helper.getData();
+//        Log.i("categoryLength",String.valueOf(values.size()));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -44,15 +45,15 @@ public abstract class Converter extends AppCompatActivity {
     public void listOptions(Spinner dropdown1, Spinner dropdown2,String tableName) {
         DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         List<String> label=db.getUnits(tableName);
-        Log.i("labelLength:",String.valueOf(label.size()));
+//        Log.i("labelLength:",String.valueOf(label.size()));
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,label);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown1.setAdapter(adapter);
         dropdown2.setAdapter(adapter);
         dropdown1.setOnItemSelectedListener(new SourceUnitListener());
-        Log.i("source Unit ",sourceUnit);
+//        Log.i("source Unit ",sourceUnit);
         dropdown2.setOnItemSelectedListener(new TargetUnitListener());
-        Log.i("target Unit ",targetUnit);
+//        Log.i("target Unit ",targetUnit);
 
     }
 
@@ -69,9 +70,9 @@ public abstract class Converter extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!s.toString().equals(""))
                 {
-                    Log.i("Value", String.valueOf(s.toString().length()));
+//                    Log.i("Value", String.valueOf(s.toString().length()));
                     inputValue = Double.parseDouble(s.toString());
-                    Log.i("inputValue", String.valueOf(inputValue));
+//                    Log.i("inputValue", String.valueOf(inputValue));
                     convert(inputValue, sourceUnit, targetUnit);
                 }else
                 {

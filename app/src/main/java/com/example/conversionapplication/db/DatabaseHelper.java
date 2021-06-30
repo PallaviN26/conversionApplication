@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.conversionapplication.Converter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +23,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS temperature(unit TEXT, value INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS temperature(unit TEXT, value REAL)");
+        Log.i("Tablecreation","Temp");
+        db.execSQL("CREATE TABLE IF NOT EXISTS weight(unit TEXT, value REAL)");
+        Log.i("Tablecreation","Weight");
+        db.execSQL("CREATE TABLE IF NOT EXISTS length(unit TEXT, value REAL)");
+        Log.i("Tablecreation","Length");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS temperature");
+        db.execSQL("DROP TABLE IF EXISTS weight");
+        db.execSQL("DROP TABLE IF EXISTS length");
         onCreate(db);
 
     }
-    public void insertLabel(String unit,Integer value,String tableName){
+    public void insertLabel(String unit,Double value,String tableName){
         Log.i("table","insertLabel");
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
@@ -59,6 +68,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return list;
     }
+
+//    public double getValues(String tableName,String currUnit){
+//        Log.i("status of db","entered getValues");
+//        SQLiteDatabase db=this.getReadableDatabase();
+//        Log.i("CheckingSourceTarget","SELECT * FROM "+tableName+" WHERE unit = '"+currUnit+"'");
+//        Cursor cursor=db.rawQuery("SELECT * FROM "+tableName+" WHERE unit like '"+currUnit+"'",null);
+//        Log.i("Cursor Length", String.valueOf(cursor.getCount()));
+//        cursor.moveToFirst();
+//        Log.i("ValueOfWeightUnit",cursor.getString(0));
+//        return cursor.getDouble(1);
+//        return 1.0;
+//    }
 
     public void deleteTable(String tableName){
         SQLiteDatabase db=this.getWritableDatabase();
