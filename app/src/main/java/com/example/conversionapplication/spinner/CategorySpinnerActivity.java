@@ -23,7 +23,7 @@ public class CategorySpinnerActivity implements AdapterView.OnItemSelectedListen
        if(position != Converter.position ) {
            switch (position) {
                case 0:
-                   intent = new Intent(Converter.converter.getApplicationContext(), Temperature.class);
+                   intent = new Intent(Converter.converter.getApplicationContext(), Currency.class);
                    Log.i("Which intent?", "Temperature");
 
                    Converter.converter.startActivity(intent);
@@ -34,7 +34,7 @@ public class CategorySpinnerActivity implements AdapterView.OnItemSelectedListen
                    Converter.converter.startActivity(intent);
                    break;
                case 2:
-                   intent = new Intent(Converter.converter.getApplicationContext(), Currency.class);
+                   intent = new Intent(Converter.converter.getApplicationContext(), Temperature.class);
                    Log.i("Which intent ?"," Currency");
                    Converter.converter.startActivity(intent);
                    break;

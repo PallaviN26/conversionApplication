@@ -17,6 +17,7 @@ public class Length extends Converter{
     EditText input1,input2;
     TextView output;
     double value;
+    DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +33,17 @@ public class Length extends Converter{
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
         listMainCategory(mainCategory);
+        db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         insertDataToDB();
         readInput(input1);
         listOptions(initialUnit,finalUnit,"length");
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
+        Converter.sourceUnit = "Metre";
+        Converter.targetUnit = "Metre";
     }
 
     private void insertDataToDB() {
-        DatabaseHelper db;
-        db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
+
         db.deleteTable("length");
         Log.i("Length ","start");
         db.insertLabel("Millimetre", (double) 1000,"length");
@@ -59,6 +62,9 @@ public class Length extends Converter{
 
     @Override
     public void convert(double input, String unitFrom, String unitTo) {
-
+        double sourceInmetres = db.getValues("length",Converter.sourceUnit);
+        double targetInmetres = db.getValues("length",Converter.targetUnit);
+        value = Converter.inputValue *  targetInmetres/sourceInmetres;
+        output.setText(String.format("%.3f",value));
     }
 }
