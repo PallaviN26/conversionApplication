@@ -69,17 +69,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-//    public double getValues(String tableName,String currUnit){
+    public double getValues(String tableName,String currUnit){
 //        Log.i("status of db","entered getValues");
-//        SQLiteDatabase db=this.getReadableDatabase();
+        SQLiteDatabase db=this.getReadableDatabase();
 //        Log.i("CheckingSourceTarget","SELECT * FROM "+tableName+" WHERE unit = '"+currUnit+"'");
-//        Cursor cursor=db.rawQuery("SELECT * FROM "+tableName+" WHERE unit like '"+currUnit+"'",null);
+        Cursor cursor=db.rawQuery("SELECT * FROM "+tableName+" WHERE unit like '"+currUnit+"'",null);
 //        Log.i("Cursor Length", String.valueOf(cursor.getCount()));
-//        cursor.moveToFirst();
-//        Log.i("ValueOfWeightUnit",cursor.getString(0));
-//        return cursor.getDouble(1);
+        cursor.moveToFirst();
+//        Log.i("ValueOfWeightUnit", String.valueOf(cursor.getDouble(1)));
+        return cursor.getDouble(1);
 //        return 1.0;
-//    }
+    }
 
     public void deleteTable(String tableName){
         SQLiteDatabase db=this.getWritableDatabase();
