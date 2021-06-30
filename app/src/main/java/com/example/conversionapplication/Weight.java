@@ -52,6 +52,8 @@ public class Weight extends Converter {
         db.insertLabel("Pound", (double) 2.2046226218,"weight");
         db.insertLabel("Ounce", (double) 35.27396195,"weight");
         listOptions(initialUnit,finalUnit,"weight");
+        Converter.sourceUnit="Kilogram";
+        Converter.targetUnit="Kilogram";
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
 
     }
@@ -62,9 +64,9 @@ public class Weight extends Converter {
         Log.i("checkingWeightConvert",String.valueOf(res.size()));
         Log.i("sourceValue",Converter.sourceUnit);
         Log.i("targetValue",Converter.targetUnit);
-//        double sourceValue=db.getValues("weight",Converter.sourceUnit);
-//        double targetValue=db.getValues("weight",Converter.targetUnit);
-//        double resValue=Converter.inputValue*sourceValue/targetValue;
-//        output.setText(String.format("%.2f",resValue));
+        double sourceValue=db.getValues("weight",Converter.sourceUnit);
+        double targetValue=db.getValues("weight",Converter.targetUnit);
+        double resValue=Converter.inputValue/sourceValue*targetValue;
+        output.setText(String.format("%.4f",resValue));
     }
 }
