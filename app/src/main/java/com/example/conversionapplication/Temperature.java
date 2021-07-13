@@ -32,6 +32,7 @@ public class Temperature extends Converter {
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
+
         readInput(input1);
         value = Converter.inputValue;
         listMainCategory(mainCategory);
@@ -42,6 +43,7 @@ public class Temperature extends Converter {
         db.insertLabel("Fahrenheit", (double) 300,"temperature");
         listOptions(initialUnit,finalUnit,"temperature");
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
+        output.setText("");
     }
 
 
@@ -114,7 +116,7 @@ public class Temperature extends Converter {
         return (fahrenheit-32)*5/9+273.15;
     }
     public double convertFahrenheitToCelsius(double fahrenheit){
-        return (273-32)*5/9;
+        return (fahrenheit-32)*5/9;
     }
 
 }

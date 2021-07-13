@@ -32,6 +32,7 @@ public class Length extends Converter{
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
+
         listMainCategory(mainCategory);
         db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         insertDataToDB();
@@ -40,6 +41,7 @@ public class Length extends Converter{
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
         Converter.sourceUnit = "Metre";
         Converter.targetUnit = "Metre";
+        output.setText("");
     }
 
     private void insertDataToDB() {

@@ -37,6 +37,7 @@ public class Weight extends Converter {
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
+
         readInput(input1);
         value = Converter.inputValue;
         listMainCategory(mainCategory);
@@ -55,13 +56,10 @@ public class Weight extends Converter {
         Converter.sourceUnit="Kilogram";
         Converter.targetUnit="Kilogram";
         mainCategory.setOnItemSelectedListener(new CategorySpinnerActivity());
-
+        output.setText("");
     }
     @Override
     public void convert(double input, String unitFrom, String unitTo) {
-//        DatabaseHelper db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
-        List<String> res=db.getUnits("weight");
-        Log.i("checkingWeightConvert",String.valueOf(res.size()));
         Log.i("sourceValue",Converter.sourceUnit);
         Log.i("targetValue",Converter.targetUnit);
         double sourceValue=db.getValues("weight",Converter.sourceUnit);
