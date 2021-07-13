@@ -32,7 +32,8 @@ public class Length extends Converter{
         finalUnit= findViewById(R.id.temperatureUnit2);
         input1 = findViewById(R.id.input1);
         output=findViewById(R.id.output);
-
+        Log.i("set text value",output.getText().toString());
+        output.setText("");
         listMainCategory(mainCategory);
         db=new DatabaseHelper(getApplicationContext(),"UnitDatabase",null,1);
         insertDataToDB();
