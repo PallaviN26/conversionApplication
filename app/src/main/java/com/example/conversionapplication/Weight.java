@@ -27,8 +27,6 @@ public class Weight extends Converter {
         getSupportActionBar().hide();
         //context= this;
         converter = this;
-
-
         setContentView(R.layout.activity_temperature);
         swapImage = findViewById(R.id.swap);
         swapImage.setRotation(90);
